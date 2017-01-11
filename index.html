@@ -1,29 +1,41 @@
-<!DOCTYPE>
+<!-- Udacity Neighbourhood Map Project
+Name: Shruti Upreti
+email: shrutiupreti.nmims@gmail.com -->
+<!DOCTYPE html>
 <html>
 	<head>
-		<title>Ahmedabad Neighbourhood Map</title>
-		<link rel="stylesheet" type="text/css" href="css/style.css">
-		<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+		<meta charset="utf-8">
+		<title> Ahmedabad Neighbourhood Map </title>
+		<link href="css/style.css" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
 	<body>
-		<div id="search">
-			<div id="user input">
-				<input type="text" name="">
+		<div class= "container">
+			<div class= "search-box">
+				<input type="text" class="textbox" data-bind="textinput:queryLocations" placeholder="Search">
 			</div>
-			
-		</div>
-		<div id="map" height="100%">
-		Oops! Looks like there has been some problem loading the maps.
-		</div>
-	</body>
-	<script src="js/app.js"></script>
+			<div class = "map_and_list">
+				<ul data-bind="foreach: loc">
+					<li>
+						<span data-bind="text: name, click: $parent.showInfoWindow"></span>
+						<hr>
+					</li>
+				</ul>
+			<div id="map"></div>
+			</div>
+			</div>	
+
+	<script src="js/jquery-1.12.0.min.js"></script>
 	<script src="js/knockout-3.4.1.js"></script>
-	<script scr="js/jquery-1.12.0.min.js"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5yrBYvXgFKJNoLWJSub3vItDs12VA0cY&callback=initMap&libraries=places" async defer></script>
+	<script async src="js/app.js"></script>
+	<script>
+	function errorHandling() {
+		alert("Oops! Looks like there has been some issue loading the maps");
+	}
+	</script>
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8yJQRgUt7KjOP74ZPDy20TWdGREGQE5I&v=3&callback=initializeMap" onerror="errorHandling()">
+	</script>
+
+</body>
 </html>
-
-
-
-
-  
