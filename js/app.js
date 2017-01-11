@@ -115,14 +115,14 @@ function animateMarker(marker) {
 
 //creates infowindow
 function populateInfoWindow(marker, infowindow) {
-  var streetUrl = 'http://maps.googleapis.com/maps/api/streetview?size=200x100&location=' + marker.address +'';
+  var streetUrl = 'https://maps.googleapis.com/maps/api/streetview?size=200x100&location=' + marker.address +'';
   //Reference: MediaWiki API
   //AJAX function to call wikipedia API to get the location details
   var wikiRequestTimeout = setTimeout(function(){
         infowindow.setContent("Oops! Couldn't load wikipedia resources for" + '<div>' + marker.title + '</div>');
         infowindow.open(map,marker);
     },1000);
-  var url_Wikipedia = 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + marker.title + '&format=json&callback=wikiCallback';
+  var url_Wikipedia = 'https://en.wikipedia.org/w/api.php?action=opensearch&search=' + marker.title + '&format=json&callback=wikiCallback';
   $.ajax({
     url: url_Wikipedia,
     dataType: "jsonp",
