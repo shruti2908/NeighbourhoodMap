@@ -1,0 +1,15 @@
+html{
+	font-family: 'Roboto', sans-serif;
+}
+#map {
+	height: 100%;
+	width: 75%;
+}
+
+#search{
+	float: left;
+	height: 100%;
+	width: 25%;
+	background-color: #09c;
+	opacity: 0.5; 
+}
