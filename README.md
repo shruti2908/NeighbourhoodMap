@@ -22,7 +22,7 @@ jquery-0.1.12.min.js
 </p>
 <p>
 References:
--Google Maps API
--MediaWiki API
+-Google Maps API: https://developers.google.com/maps/ <br>
+-MediaWiki API: https://www.mediawiki.org/wiki/API:Main_page <br>
 -Open Source Google Fonts </p><br>
 Link: https://shruti2908.github.io/NeighbourhoodMap/
