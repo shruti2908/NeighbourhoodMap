@@ -1,7 +1,14 @@
 //Udacity Neighbourhood Map Project
 // Name: Shruti Upreti
 //email: shrutiupreti.nmims@gmail.com
-//References: Googlemaps API, MediaWiki API, Open source fonts
+//References: Googlemaps API, MediaWiki API(Wikipedia API), Open source fonts
+
+//When google maps fail to load
+function errorHandling() {
+    alert("Oops! Looks like there has been some issue loading the maps");
+    $('#map-canvas').html("Please try again later"); 
+}
+
 //Declared global variables
 var map;
 var bounds;
@@ -9,8 +16,8 @@ var marker;
 var markers= [];
 var largeInfowindow;
 
-//Contains all the locations in initialLocations(Model)
-var initialLocations = [
+//Contains all the locations in myLocations(Model)
+var myLocations = [
   { 
     name: 'Law Garden',
     location:{lat: 23.026473,lng: 72.560664},
@@ -54,29 +61,27 @@ var initialLocations = [
     address:'Near Mansarovar Apartment, Chimanlal Girdharlal Rd, Ellisbridge, Ahmedabad, Gujarat 380009'}
 ];
 
-// Evaluates length of initialLocations object
-var locationsLength = initialLocations.length;
-
 //initMap: initialises the map
 function initializeMap() {
   largeInfowindow = new google.maps.InfoWindow();
-    map = new google.maps.Map(document.getElementById('map'), {
+    map = new google.maps.Map(document.getElementById('map-canvas'), {
       center: {lat: 23.026473, lng: 72.560664},
       zoom: 19,
       scrollwheel: true
     });
 
-    for(i = 0;i < locationsLength; i++){
+    for(i = 0;i < myLocations.length; i++){
         marker = new google.maps.Marker({
             map: map,
-            position: initialLocations[i].location,
-            title: initialLocations[i].name,
-            address: initialLocations[i].address,
-            animation: google.maps.Animation.DROP
+            position: myLocations[i].location,
+            title: myLocations[i].name,
+            address: myLocations[i].address,
+            animation: google.maps.Animation.BOUNCE,
+            draggable: true
         }); 
 
-        //Create a marker for the initialLocations array to store the every marker for their associated locations.
-        initialLocations[i].marker = marker;
+        //Create a marker for the myLocations array to store the every marker for their associated locations.
+        myLocations[i].marker = marker;
         markers.push(marker);
 
         //Opens infowindow by clicking the marker
@@ -101,7 +106,7 @@ function initializeMap() {
           }
       map.fitBounds(bounds);      
     }   
-  ko.applyBindings(new appViewModel());
+  ko.applyBindings(new myViewModel());
 }
 
 // Animation for marker
@@ -109,19 +114,19 @@ function animateMarker(marker) {
   if (marker.getAnimation() !== null) {
         marker.setAnimation(null);
     } else {
-        marker.setAnimation(google.maps.Animation.DROP);
+        marker.setAnimation(google.maps.Animation.BOUNCE);
     }
 }
 
 //creates infowindow
-function populateInfoWindow(marker, infowindow) {
+function populateInfoWindow(marker, info_window) {
   var streetUrl = 'https://maps.googleapis.com/maps/api/streetview?size=200x100&location=' + marker.address +'';
   //Reference: MediaWiki API
   //AJAX function to call wikipedia API to get the location details
   var wikiRequestTimeout = setTimeout(function(){
-        infowindow.setContent("Oops! Couldn't load wikipedia resources for" + '<div>' + marker.title + '</div>');
-        infowindow.open(map,marker);
-    },1000);
+        info_window.setContent("Oops! Couldn't load wikipedia resources for" + '<div>' + marker.title + '</div>');
+        info_window.open(map,marker);
+    },2000);
   var url_Wikipedia = 'https://en.wikipedia.org/w/api.php?action=opensearch&search=' + marker.title + '&format=json&callback=wikiCallback';
   $.ajax({
     url: url_Wikipedia,
@@ -129,14 +134,14 @@ function populateInfoWindow(marker, infowindow) {
     success: function( response ) {
       var article = response[2];
       var link = response[3];
-      if(infowindow.marker != marker) {
-            infowindow.marker = marker;
-              infowindow.setContent('<li><a href="' + link +'">'+ marker.title +'</a></li>'+'<div>'+ marker.address +'</div>'+'<div>' + article + '</div>'+'<img class="bgimg" src="' + streetUrl + '">');
-              infowindow.open(map, marker);
+      if(info_window.marker != marker) {
+            info_window.marker = marker;
+              info_window.setContent('<li><a href="' + link +'">'+ marker.title +'</a></li>'+'<div>'+ marker.address +'</div>'+'<div>' + article + '</div>'+'<img class="bgimg" src="' + streetUrl + '">');
+              info_window.open(map, marker);
 
               // Checks if marker property is cleared
-              infowindow.addListener('closeclick', function() {
-              infowindow.marker = null;
+              info_window.addListener('closeclick', function() {
+              info_window.marker = null;
               map.fitBounds(bounds);
             });
           }
@@ -146,17 +151,17 @@ function populateInfoWindow(marker, infowindow) {
 }
 
 //ViewModel function     
-var appViewModel = function(){
+var myViewModel = function(){
 
-  this.initialLocations = ko.observable(initialLocations);
+  this.myLocations = ko.observable(myLocations);
 
   //This function displays the infowindow by clicking on the location in list and performs location match with the model data and also toggles the marker
   this.showInfoWindow = function(place){
-    for(var i = 0; i < locationsLength; i++){
-      if(place.name === initialLocations[i].name){
-        var markerNewRef = markers[i];
-        animateMarker(markerNewRef);
-        populateInfoWindow(markerNewRef, largeInfowindow);
+    for(var i = 0; i < myLocations.length; i++){
+      if(place.name === myLocations[i].name){
+        var newMarker = markers[i];
+        animateMarker(newMarker);
+        populateInfoWindow(newMarker, largeInfowindow);
       }
     }
   };
@@ -167,7 +172,7 @@ var appViewModel = function(){
     map.fitBounds(bounds);
     largeInfowindow.close();
     var queryLocations = this.queryLocations().toLowerCase();
-    return ko.utils.arrayFilter(this.initialLocations(), function(list) {
+    return ko.utils.arrayFilter(this.myLocations(), function(list) {
       var result = list.name.toLowerCase().indexOf(queryLocations) > -1;
       list.marker.setVisible(result);
       return result;
