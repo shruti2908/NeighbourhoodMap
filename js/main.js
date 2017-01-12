@@ -1,7 +1,7 @@
 //Udacity Neighbourhood Map Project
 // Name: Shruti Upreti
 //email: shrutiupreti.nmims@gmail.com
-//References: Googlemaps API, MediaWiki API(Wikipedia API), Open source fonts
+//References: Googlemaps API, MediaWiki API(Wikipedia API), Open source Google Fonts
 
 //When google maps fail to load
 function errorHandling() {
@@ -12,9 +12,10 @@ function errorHandling() {
 //Declared global variables
 var map;
 var bounds;
+var locInfowindow;
 var marker;
 var markers= [];
-var largeInfowindow;
+
 
 //Contains all the locations in myLocations(Model)
 var myLocations = [
@@ -63,7 +64,7 @@ var myLocations = [
 
 //initMap: initialises the map
 function initializeMap() {
-  largeInfowindow = new google.maps.InfoWindow();
+  locInfowindow = new google.maps.InfoWindow();
     map = new google.maps.Map(document.getElementById('map-canvas'), {
       center: {lat: 23.026473, lng: 72.560664},
       zoom: 19,
@@ -87,7 +88,7 @@ function initializeMap() {
         //Opens infowindow by clicking the marker
         marker.addListener('click', function() {
         animateMarker(this);
-        populateInfoWindow(this, largeInfowindow);
+        populateInfoWindow(this, locInfowindow);
     });     
   }
 
@@ -106,7 +107,7 @@ function initializeMap() {
           }
       map.fitBounds(bounds);      
     }   
-  ko.applyBindings(new myViewModel());
+  ko.applyBindings(new appViewModel());
 }
 
 // Animation for marker
@@ -151,7 +152,7 @@ function populateInfoWindow(marker, info_window) {
 }
 
 //ViewModel function     
-var myViewModel = function(){
+var appViewModel = function(){
 
   this.myLocations = ko.observable(myLocations);
 
@@ -161,7 +162,7 @@ var myViewModel = function(){
       if(place.name === myLocations[i].name){
         var newMarker = markers[i];
         animateMarker(newMarker);
-        populateInfoWindow(newMarker, largeInfowindow);
+        populateInfoWindow(newMarker, locInfowindow);
       }
     }
   };
@@ -170,7 +171,7 @@ var myViewModel = function(){
   this.loc = ko.computed(function(){
     
     map.fitBounds(bounds);
-    largeInfowindow.close();
+    locInfowindow.close();
     var queryLocations = this.queryLocations().toLowerCase();
     return ko.utils.arrayFilter(this.myLocations(), function(list) {
       var result = list.name.toLowerCase().indexOf(queryLocations) > -1;
