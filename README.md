@@ -1,6 +1,6 @@
 <ul>
-<li>Project Name: Udacity Neighbourhood Map Project</li>
-<li>Program: Udacity Frontend Nanodegree Program</li>
+<li><h4>Project Name: Udacity Neighbourhood Map Project</h4></li>
+<li><h4>Program: Udacity Frontend Nanodegree Program</h4></li>
 </ul>
 
 
@@ -24,4 +24,5 @@ jquery-0.1.12.min.js
 References:
 -Google Maps API
 -MediaWiki API
--Open Source Google Fonts </p>
+-Open Source Google Fonts </p><br>
+Link: https://shruti2908.github.io/NeighbourhoodMap/
