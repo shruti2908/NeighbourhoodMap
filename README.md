@@ -7,7 +7,7 @@
 <p>
 To run the Project:
 <ol>
-<li>	 Download the zip file and extract it.</li>
+<li>	 Download the zip file and extract it or visit the link given below</li>
 <li>	 Run index.html.</li>
 <li>	 The given map shows a list of locations, click on any of the markers and read the information about it.
 		Alternatively, search for the location in the list and the markers update according to your search.</li></ol>
