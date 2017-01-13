@@ -21,6 +21,7 @@ jquery-0.1.12.min.js
 <p>
 References:
 -Google Maps API: https://developers.google.com/maps/, https://developers.google.com/maps/documentation/javascript/<br>
--MediaWiki API: https://www.mediawiki.org/wiki/API:Main_page, https://www.mediawiki.org/wiki/API:Query <br>
+-MediaWiki API: https://www.mediawiki.org/wiki/API:Main_page, <br> https://www.mediawiki.org/wiki/API:Query <br>
 -Open Source Google Fonts </p><br>
-Link: https://shruti2908.github.io/NeighbourhoodMap/
+-Knockout js: http://knockoutjs.com/documentation/introduction.html <br>
+Link to Project: https://shruti2908.github.io/NeighbourhoodMap/
