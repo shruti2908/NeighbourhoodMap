@@ -24,4 +24,4 @@ References:
 -MediaWiki API: https://www.mediawiki.org/wiki/API:Main_page, <br> https://www.mediawiki.org/wiki/API:Query <br>
 -Open Source Google Fonts <br>
 -Knockout js: http://knockoutjs.com/documentation/introduction.html</p><br>
-Link to Project: https://shruti2908.github.io/NeighbourhoodMap/
+Link to Project:https://shruti2908.github.io/UdacityNeighbourhoodMap/
