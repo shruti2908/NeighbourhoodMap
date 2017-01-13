@@ -1,7 +1,7 @@
 //Udacity Neighbourhood Map Project
 // Name: Shruti Upreti
 //email: shrutiupreti.nmims@gmail.com
-//References: Googlemaps API, MediaWiki API(Wikipedia API), Open source Google Fonts
+//References: Googlemaps API, MediaWiki API(Wikipedia API), Open source Google Fonts, https://www.knockmeout.net/2011/04/utility-functions-in-knockout.js.html
 
 //When google maps fail to load
 function errorHandling() {
@@ -24,7 +24,7 @@ var myLocations = [
     location:{lat: 23.026473,lng: 72.560664},
     address:'Netaji Road, Ellisbridge, Maharashtra Society, Ellisbridge, Ahmedabad, Gujarat 380009',
     phone: "No Contact Information",
-    url: 'No Website'
+    url: '-'
   },
 
   { 
@@ -32,7 +32,7 @@ var myLocations = [
     location:{lat: 23.020212, lng: 72.556125},
     address:'Parimal Cross Road, Ambawadi, Panchavati Society, Ambawadi, Ahmedabad, Gujarat 380006',
     phone: "No Contact Information",
-    url: 'No Website'
+    url: '-'
   },
   { 
     name: 'KFC CG Road',
@@ -54,7 +54,7 @@ var myLocations = [
     location:{lat: 23.036117,lng: 72.563533},
     address:'Kimsim Complex, Near Swastik Chaurastha, Navrangpura Road, Navrangpura, Shrimali Society, Navrangpura, Ahmedabad, Gujarat 380009',
  	phone: 09512577449,
- 	url: 'No Website'
+ 	url: '-'
   },
 
   { 
@@ -86,7 +86,7 @@ var myLocations = [
     location: {lat: 23.020925, lng: 72.555271},
     address: 'C.G. ROAD, KOLONNADE CENTRE, OPP. SAFFRON TOWER,AMBAVADI, Panchavati Society, Ambawadi, Ahmedabad, Gujarat 380006',
     phone: 07930481777,
-    url: 'No Website'
+    url: '-'
   },
 
   { 
@@ -94,7 +94,7 @@ var myLocations = [
     location: {lat: 23.028264, lng: 72.558973},
     address:'Near Mansarovar Apartment, Chimanlal Girdharlal Rd, Ellisbridge, Ahmedabad, Gujarat 380009',
     phone: 07926403474,
-    url: 'No Website'
+    url: '-'
   },
 
   { 
@@ -110,7 +110,7 @@ var myLocations = [
    location: {lat: 23.025017, lng: 72.559373},
    address:'Alpha Bazzar , Opposite Thakorebhai Desai Hall, Law Garden, Netaji Rd, Ellisbridge, Ahmedabad, Gujarat 380006',
    phone: 09227888002,
-   url: 'No Website'
+   url: '-'
   },
 
   { 
@@ -141,7 +141,8 @@ var myLocations = [
 
 //initializeMap: initialises the map
 function initializeMap() {
-  locInfowindow = new google.maps.InfoWindow();
+
+  	locInfowindow = new google.maps.InfoWindow();
     map = new google.maps.Map(document.getElementById('map-canvas'), {
       center: {lat: 23.026473, lng: 72.560664},
       zoom: 19,
@@ -186,7 +187,7 @@ function initializeMap() {
           }
       map.fitBounds(bounds);      
     }   
-  ko.applyBindings(new appViewModel());
+  ko.applyBindings(new AppViewModel());
 }
 
 // Animation for marker
@@ -201,46 +202,39 @@ function animateMarker(marker) {
 //creates infowindow
 function populateInfoWindow(marker, info_window) {
   var streetViewUrl = 'https://maps.googleapis.com/maps/api/streetview?size=200x100&location=' + marker.address +'';
-  //AJAX function to call wikipedia API to get the location details
-  var mediaWikiReqTimeout = setTimeout(function(){
-        info_window.setContent("Oops! Couldn't load wikipedia resources for" + '<p><strong>' + marker.title + '</strong></p>');
-        info_window.open(map,marker);
-    },2000);
   var url_Wikipedia = 'https://en.wikipedia.org/w/api.php?action=opensearch&search=' + marker.title + '&format=json&callback=wikiCallback';
   $.ajax({
     url: url_Wikipedia,
     dataType: "jsonp",
-    success: function( wikiResponse ) {
-      var article = wikiResponse[2];
-      var link = wikiResponse[3];
-      if(info_window.marker != marker) {
-      	//Sets content for information window
-            info_window.marker = marker;
-              info_window.setContent('<h1><strong><a href="' + link +'">'+ marker.title +'</a></strong></h1>' + '<strong>' + "Address:" 
-              + '</strong>' + '<p><em>'+ marker.address + '<p><strong>' + "Contact: " + '</strong></p>' + '<p>' + marker.phone + '</p>'
-              + '</em></p>' + '<p><strong>' + "Website: " + '</strong></p>' + '<a href="' + marker.url +'">' + marker.url + '</a><br><br>' + '<div class="article">' +
-              article + '</div><br>'+'<img class="wiki_img" src="' + streetViewUrl + '">');
-              info_window.open(map, marker);
+    }).done(function( wikiResponse ) {
 
-              // Checks if marker property is cleared
-              info_window.addListener('closeclick', function() {
-              info_window.marker = null;
-              map.fitBounds(bounds);
-            });
-          }
-          clearTimeout(mediaWikiReqTimeout);
-    }
-  });
+    	var article = wikiResponse[2];
+      	var link = wikiResponse[3];
+      	info_window.marker = marker;
+        info_window.setContent('<h1><a href="' + link +'"><strong>'+ marker.title +'</a></h1></strong>' + '<strong>' + "Address:" + '</strong>' + '<p><em>'+ marker.address + '<p><strong>' + "Contact: " + '</strong></p>' + '<p>' + marker.phone + '</p>' + '</em></p>' + '<p><strong>' + "Website: " + '</strong></p>' + '<a href="' + marker.url +'">' + marker.url + '</a><br><br>' + '<div class="article">' + article + '</div><br>'+'<img class="wiki_img" src="' + streetViewUrl + '">');
+        info_window.open(map, marker);
+        console.log(link);
+        if (article.length < 1) {
+                  $("a").append("<p>No wikipedia information available</p>");
+            }
+
+    	}).fail(function (jqXHR, textStatus) {
+                    alert("failed to load wikipedia resources");
+                    }); 
 }
+  
 
+ 
 //ViewModel function     
-var appViewModel = function(){
+var AppViewModel = function(){
 
-  this.myLocations = ko.observable(myLocations);
+  var self = this;
+
+  self.myLocations = ko.observable(myLocations);
 
   //This function displays the infowindow by clicking on the location in list.
   // Performs location match with the model data(myLocations) and also toggles the marker
-  this.showInfoWindow = function(place){
+  self.showInfoWindow = function(place){
     for(var i = 0; i < myLocations.length; i++){
       if(place.name === myLocations[i].name){
         var newMarker = markers[i];
@@ -250,16 +244,19 @@ var appViewModel = function(){
     }
   };
 
-  this.queryLocations = ko.observable('')
-  this.loc = ko.computed(function(){
+  self.queryLocations = ko.observable('');
+  self.loc = ko.computed(function(){
     
     map.fitBounds(bounds);
     locInfowindow.close();
-    var queryLocations = this.queryLocations().toLowerCase();
-    return ko.utils.arrayFilter(this.myLocations(), function(list) {
-      var result = list.name.toLowerCase().indexOf(queryLocations) > -1;
-      list.marker.setVisible(result);
-      return result;
+    var queryLocations = self.queryLocations().toLowerCase();
+
+    //Reference: https://www.knockmeout.net/2011/04/utility-functions-in-knockout.js.html
+    //Filters the myLocations array as per the input and sets the corresponding marker to visible
+    return ko.utils.arrayFilter(self.myLocations(), function(list) {
+      var search_result = list.name.toLowerCase().indexOf(queryLocations) > -1;
+      list.marker.setVisible(search_result);
+      return search_result;
     }); 
-  },this);
+  },self);
 };
