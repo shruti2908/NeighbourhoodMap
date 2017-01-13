@@ -8,6 +8,25 @@ html {
   margin: 0;
   padding: 0;
 }
+.article {
+  text-align: justify;
+}
+img {
+  border-radius: 5px;
+}
+
+p{
+  color: #000000;
+}
+
+a{
+  text-decoration: none;
+  color: #000000;
+}
+
+h5 {
+  color: #000000;
+}
 
 h2 {
   text-align: center;
@@ -70,7 +89,11 @@ hr{
 
 @media screen and (min-width: 300px) and (max-width: 750px){
   ul {
-      font-size: 12px;
+      font-size: 10px;
+  }
+
+  #map-canvas{
+    height: 100%;
   }
   .textbox {
     text-align: center;
