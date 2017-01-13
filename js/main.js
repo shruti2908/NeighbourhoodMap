@@ -22,47 +22,106 @@ var myLocations = [
   { 
     name: 'Law Garden',
     location:{lat: 23.026473,lng: 72.560664},
-    address:'Netaji Road, Ellisbridge, Maharashtra Society, Ellisbridge, Ahmedabad, Gujarat 380009'},
+    address:'Netaji Road, Ellisbridge, Maharashtra Society, Ellisbridge, Ahmedabad, Gujarat 380009',
+    phone: "No Contact Information"
+  },
 
   { 
     name: 'Parimal Garden' ,
     location:{lat: 23.020212, lng: 72.556125},
-    address:'Parimal Cross Road, Ambawadi, Panchavati Society, Ambawadi, Ahmedabad, Gujarat 380006'},
+    address:'Parimal Cross Road, Ambawadi, Panchavati Society, Ambawadi, Ahmedabad, Gujarat 380006',
+    phone: "No Contact Information"
+  },
   { 
     name: 'KFC CG Road',
     location:{lat:23.021579, lng:72.557739},
-    address:'No 2, 3rd Eye Building, Chimanlal Girdharlal Road, Opp Parimal Garden, Navrangpura, Ellisbridge, Ahmedabad, Gujarat 380009'},
+    address:'No 2, 3rd Eye Building, Chimanlal Girdharlal Road, Opp Parimal Garden, Navrangpura, Ellisbridge, Ahmedabad, Gujarat 380009',
+    phone: 07940099900
+  },
   { 
     name: 'CEPT University',
     location:{lat: 23.038159, lng:72.549927},
-    address:'Kasturba Lalabhai Campus, University Road, Vasant Vihar, Navrangpura, University Area, Ahmedabad, Gujarat 380009'},
+    address:'Kasturba Lalabhai Campus, University Road, Vasant Vihar, Navrangpura, University Area, Ahmedabad, Gujarat 380009',
+  	phone: 07926302470
+  },
+
   { 
     name: 'Jalaram Chachh',
     location:{lat: 23.036117,lng: 72.563533},
-    address:'Kimsim Complex, Near Swastik Chaurastha, Navrangpura Road, Navrangpura, Shrimali Society, Navrangpura, Ahmedabad, Gujarat 380009'},
+    address:'Kimsim Complex, Near Swastik Chaurastha, Navrangpura Road, Navrangpura, Shrimali Society, Navrangpura, Ahmedabad, Gujarat 380009',
+ 	phone: 09512577449
+  },
+
   { 
     name: 'Shiv Cinema',
-    location:{lat: 23.031782, lng: 72.571531},
-    address:'Opp. City Gold Cinema, Near Atma House, Ashram Road, Vishalpur, Muslim Society, Navrangpura, Ahmedabad, Gujarat 380015'},
+    location: {lat: 23.031782, lng: 72.571531},
+    address:'Opp. City Gold Cinema, Near Atma House, Ashram Road, Vishalpur, Muslim Society, Navrangpura, Ahmedabad, Gujarat 380015',
+    phone: 07933016909
+  },
+
   { 
     name: 'Passport Seva Kendra',
-    location:{lat: 23.032738,lng: 72.566246},
-    address:'Ground & First Floor, Arya Arcade, Netaji Road, Near Mithakhali, Navrangpura, Mithakhali, Navrangpura, Ahmedabad, Gujarat 380009'},
+    location: {lat: 23.032738,lng: 72.566246},
+    address:'Ground & First Floor, Arya Arcade, Netaji Road, Near Mithakhali, Navrangpura, Mithakhali, Navrangpura, Ahmedabad, Gujarat 380009',
+    phone: 07926309107
+  },
+  
   { 
     name: 'Four Points By Sheraton',
-    location:{lat: 23.022579, lng: 72.568913},
-    address:'Opposite Gujarat College, Ellis Bridge, Ellisbridge, Ahmedabad, Gujarat 380006'},
+    location: {lat: 23.022579, lng: 72.568913},
+    address:'Opposite Gujarat College, Ellis Bridge, Ellisbridge, Ahmedabad, Gujarat 380006',
+    phone: 07930912345
+  },
+  
   { 
     name: 'Central',
-    location:{lat: 23.020925, lng: 72.555271},
-    address: 'C.G. ROAD, KOLONNADE CENTRE, OPP. SAFFRON TOWER,AMBAVADI, Panchavati Society, Ambawadi, Ahmedabad, Gujarat 380006'},
+    location: {lat: 23.020925, lng: 72.555271},
+    address: 'C.G. ROAD, KOLONNADE CENTRE, OPP. SAFFRON TOWER,AMBAVADI, Panchavati Society, Ambawadi, Ahmedabad, Gujarat 380006',
+    phone: 07930481777
+  },
+
   { 
     name: 'National Handloom',
-    location:{lat: 23.028264, lng: 72.558973},
-    address:'Near Mansarovar Apartment, Chimanlal Girdharlal Rd, Ellisbridge, Ahmedabad, Gujarat 380009'}
+    location: {lat: 23.028264, lng: 72.558973},
+    address:'Near Mansarovar Apartment, Chimanlal Girdharlal Rd, Ellisbridge, Ahmedabad, Gujarat 380009',
+    phone: 07926403474
+  },
+
+  { 
+   name: 'Jade Blue',
+   location: {lat:23.0285, lng: 72.5585},
+   address:'B-61,, Pariseema Complex, Chimanlal Girdharlal Road, Ellisbridge, Ahmedabad, Gujarat 380006',
+   phone: 07926468182
+  },
+
+  { 
+   name: 'Alfa Bazaar',
+   location: {lat: 23.025017, lng: 72.559373},
+   address:'Alpha Bazzar , Opposite Thakorebhai Desai Hall, Law Garden, Netaji Rd, Ellisbridge, Ahmedabad, Gujarat 380006',
+   phone: 09227888002
+  },
+  { 
+   name: 'Radisson Blu Hotel',
+   location: {lat: 23.0233, lng: 72.5569},
+   address:'Near Panchvati Cross Roads, Off C.G. Road, Ambawadi, Ellisbridge, Ahmedabad, Gujarat 380006',
+   phone: 07940501234
+  },
+  { 
+   name: 'State Bank of India',
+   location: {lat: 23.028723, lng: 72.560972},
+   address:'Netaji Rd, Sardar Patel Nagar Cross Road, Opp Law Garden, Ellisbridge, Ellisbridge, Ahmedabad, Gujarat 380009',
+   phone: 18004253800
+  },
+  { 
+   name: 'Marks and Spencer',
+   location: {lat: 23.0244736, lng: 72.5543167},
+   address:'AlphaOne City Center, C G Square Mall, Near Panchvati Circle, CG Road, AlphaOne City Center, Ellisbridge, Ahmedabad, Gujarat 380009',
+   phone: 08511143250
+  }
+
 ];
 
-//initMap: initialises the map
+//initializeMap: initialises the map
 function initializeMap() {
   locInfowindow = new google.maps.InfoWindow();
     map = new google.maps.Map(document.getElementById('map-canvas'), {
@@ -70,28 +129,29 @@ function initializeMap() {
       zoom: 19,
       scrollwheel: true
     });
-
+    //specifies properties of marker
     for(i = 0;i < myLocations.length; i++){
         marker = new google.maps.Marker({
             map: map,
             position: myLocations[i].location,
             title: myLocations[i].name,
             address: myLocations[i].address,
+            phone: myLocations[i].phone,
             animation: google.maps.Animation.BOUNCE,
             draggable: true
         }); 
 
-        //Create a marker for the myLocations array to store the every marker for their associated locations.
+        //Creates marker to store in their associated locations.
         myLocations[i].marker = marker;
         markers.push(marker);
 
-        //Opens infowindow by clicking the marker
+        //When marker gets clicked, info window will open and marker will animate
         marker.addListener('click', function() {
         animateMarker(this);
         populateInfoWindow(this, locInfowindow);
     });     
   }
-
+  //specifies bounds by taking in lat and long for a location
   bounds = new google.maps.LatLngBounds();
   
   //Fits the markers as window resizes
@@ -121,11 +181,10 @@ function animateMarker(marker) {
 
 //creates infowindow
 function populateInfoWindow(marker, info_window) {
-  var streetUrl = 'https://maps.googleapis.com/maps/api/streetview?size=200x100&location=' + marker.address +'';
-  //Reference: MediaWiki API
+  var streetViewUrl = 'https://maps.googleapis.com/maps/api/streetview?size=200x100&location=' + marker.address +'';
   //AJAX function to call wikipedia API to get the location details
-  var wikiRequestTimeout = setTimeout(function(){
-        info_window.setContent("Oops! Couldn't load wikipedia resources for" + '<div>' + marker.title + '</div>');
+  var mediaWikiReqTimeout = setTimeout(function(){
+        info_window.setContent("Oops! Couldn't load wikipedia resources for" + '<p><strong>' + marker.title + '</strong></p>');
         info_window.open(map,marker);
     },2000);
   var url_Wikipedia = 'https://en.wikipedia.org/w/api.php?action=opensearch&search=' + marker.title + '&format=json&callback=wikiCallback';
@@ -137,7 +196,7 @@ function populateInfoWindow(marker, info_window) {
       var link = response[3];
       if(info_window.marker != marker) {
             info_window.marker = marker;
-              info_window.setContent('<li><a href="' + link +'">'+ marker.title +'</a></li>'+'<div>'+ marker.address +'</div>'+'<div>' + article + '</div>'+'<img class="bgimg" src="' + streetUrl + '">');
+              info_window.setContent('<h1><strong><a href="' + link +'">'+ marker.title +'</a></strong></h1>' + '<strong>' + "Address:" + '</strong>' + '<p><em>'+ marker.address + '<p><strong>' + "Contact: " + '</strong></p>' + '<p>' + marker.phone + '</p>' + '</em></p>'+'<div class="article">' + article + '</div><br>'+'<img class="wiki_img" src="' + streetViewUrl + '">');
               info_window.open(map, marker);
 
               // Checks if marker property is cleared
@@ -146,7 +205,7 @@ function populateInfoWindow(marker, info_window) {
               map.fitBounds(bounds);
             });
           }
-          clearTimeout(wikiRequestTimeout);
+          clearTimeout(mediaWikiReqTimeout);
     }
   });
 }
@@ -156,7 +215,8 @@ var appViewModel = function(){
 
   this.myLocations = ko.observable(myLocations);
 
-  //This function displays the infowindow by clicking on the location in list and performs location match with the model data and also toggles the marker
+  //This function displays the infowindow by clicking on the location in list.
+  // Performs location match with the model data(myLocations) and also toggles the marker
   this.showInfoWindow = function(place){
     for(var i = 0; i < myLocations.length; i++){
       if(place.name === myLocations[i].name){
