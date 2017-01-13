@@ -218,7 +218,7 @@ function populateInfoWindow(marker, info_window) {
             info_window.marker = marker;
               info_window.setContent('<h1><strong><a href="' + link +'">'+ marker.title +'</a></strong></h1>' + '<strong>' + "Address:" 
               + '</strong>' + '<p><em>'+ marker.address + '<p><strong>' + "Contact: " + '</strong></p>' + '<p>' + marker.phone + '</p>'
-              + '</em></p>' + '<p><strong>' + "Website: " + '</strong></p>' + '<a href="' + marker.url +'">' + marker.url + '</a>' + '<div class="article">' +
+              + '</em></p>' + '<p><strong>' + "Website: " + '</strong></p>' + '<a href="' + marker.url +'">' + marker.url + '</a><br><br>' + '<div class="article">' +
               article + '</div><br>'+'<img class="wiki_img" src="' + streetViewUrl + '">');
               info_window.open(map, marker);
 
